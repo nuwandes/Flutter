@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:user_profile/auth_controller.dart';
 
 class WelcomePage extends StatelessWidget {
-  const WelcomePage({Key? key}) : super(key: key);
+  String email;
+  WelcomePage({Key? key, required this.email}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,7 @@ class WelcomePage extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "aa@gmail.com",
+                  email,
                   style: TextStyle(
                       fontSize: 20,
                       color: Colors.black54
@@ -62,37 +64,42 @@ class WelcomePage extends StatelessWidget {
             ),
           ),
           SizedBox(height: 100,),
-          Container(
-            width: w * 0.5,
-            height: h *0.07,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                      blurRadius: 10,
-                      spreadRadius: 7,
-                      offset: Offset(1,1),
-                      color: Colors.grey.withOpacity(0.2)
+          GestureDetector(
+            onTap: (){
+              AuthController.instance.logout();
+            },
+            child: Container(
+              width: w * 0.5,
+              height: h *0.07,
+              decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                        blurRadius: 10,
+                        spreadRadius: 7,
+                        offset: Offset(1,1),
+                        color: Colors.grey.withOpacity(0.2)
 
+                    )
+                  ],
+                  image: DecorationImage(
+                      image: AssetImage(
+                          "img/login_button_1.png"
+                      ),
+                      fit: BoxFit.cover
                   )
-                ],
-                image: DecorationImage(
-                    image: AssetImage(
-                        "img/login_button_1.png"
-                    ),
-                    fit: BoxFit.cover
-                )
-            ),
-            child: Center(
-              child: Text(
-                "Sign out",
-                style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white
-                ),
+              ),
+              child: Center(
+                child: Text(
+                  "Sign out",
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white
+                  ),
 
+                ),
               ),
             ),
           ),
